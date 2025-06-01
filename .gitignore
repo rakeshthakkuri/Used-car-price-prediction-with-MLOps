@@ -14,6 +14,7 @@ venv
 !data/.gitkeep
 !.dvc/
 !*.dvc
+data/raw/car_data.csv
 
 # MLflow
 mlruns/
