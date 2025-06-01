@@ -1,0 +1,16 @@
+numpy
+pandas 
+scikit-learn 
+matplotlib
+
+dvc 
+mlflow 
+fastapi 
+uvicorn 
+streamlit
+
+pre-commit
+
+pyyaml
+
+python-dotenv
