@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python3 pipeline/preprocess.py
+    deps:
+    - path: data/raw/car_data.csv
+      hash: md5
+      md5: 6694e5734047d9e14640303aa07ee1bf
+      size: 662723
+    params:
+      params.yaml:
+        data.path: data/raw/car_data.csv
+        split.random_state: 42
+        split.test_size: 0.2
+    outs:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: e33a283f06ea800d2ee45e08d91c8ded
+      size: 5557470

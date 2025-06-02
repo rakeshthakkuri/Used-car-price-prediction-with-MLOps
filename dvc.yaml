@@ -5,3 +5,11 @@ stages:
     - data/raw/car_data.csv
     outs:
     - data/processed/processed_data.csv
+  train:
+    cmd: python3 pipeline/train.py
+    deps:
+    - data/processed/processed_data.csv
+    params:
+    - model.save_path
+    outs:
+    - models/model.pkl
