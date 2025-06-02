@@ -17,3 +17,18 @@ stages:
       hash: md5
       md5: e33a283f06ea800d2ee45e08d91c8ded
       size: 5557470
+  train:
+    cmd: python3 pipeline/train.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: e33a283f06ea800d2ee45e08d91c8ded
+      size: 5557470
+    params:
+      params.yaml:
+        model.save_path: models/model.pkl
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 65698cb0f392f3ea6d797de1056a28a8
+      size: 40937572
