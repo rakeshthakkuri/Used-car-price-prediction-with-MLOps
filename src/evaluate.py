@@ -1,7 +1,7 @@
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from math import sqrt
-from config import METRICS_PATH
-from utils import save_json, print_metrics
+from src.config import METRICS_PATH
+from src.utils import save_json, print_metrics
 
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
@@ -15,3 +15,4 @@ def evaluate_model(model, X_test, y_test):
 
     save_json(metrics, METRICS_PATH)
     print_metrics(metrics)
+    return metrics

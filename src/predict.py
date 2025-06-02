@@ -1,5 +1,5 @@
-from config import MODEL_PATH
-from utils import load_pickle
+from src.config import MODEL_PATH
+from src.utils import load_pickle
 import numpy as np
 
 def predict_single(sample):

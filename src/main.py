@@ -1,9 +1,9 @@
-from train import train_model
-from evaluate import evaluate_model
-from predict import predict_single
-from ensemble import custom_ensemble
-from data_loader import load_data
-from preprocessing import preprocess_data
+from src.train import train_model
+from src.evaluate import evaluate_model
+from src.predict import predict_single
+from src.ensemble import custom_ensemble
+from src.data_loader import load_data
+from src.preprocessing import preprocess_data
 from sklearn.model_selection import train_test_split
 
 # Train model and evaluate

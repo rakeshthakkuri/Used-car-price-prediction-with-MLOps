@@ -15,4 +15,6 @@ pyyaml
 
 python-dotenv
 
+-e .
+
 dvc[gdrive]
