@@ -2,9 +2,10 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Ridge, LinearRegression
 
-def custom_ensemble(x_train, y_train, x_test_sample):
+def custom_ensemble(X_train, y_train, X_sample):
     """
-    x_test_sample: a single test sample (unscaled)
+    X_sample: 1D unscaled feature array (not preprocessed)
+    Returns mean prediction from multiple models
     """
     models = [
         RandomForestRegressor(),
@@ -14,8 +15,7 @@ def custom_ensemble(x_train, y_train, x_test_sample):
 
     predictions = []
     for model in models:
-        model.fit(x_train, y_train)
-        predictions.append(model.predict([x_test_sample]))
+        model.fit(X_train, y_train)
+        predictions.append(model.predict([X_sample]))
 
-    ensemble_prediction = np.mean(predictions)
-    return ensemble_prediction
+    return np.mean(predictions)

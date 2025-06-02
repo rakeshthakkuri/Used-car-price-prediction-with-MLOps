@@ -3,44 +3,36 @@ import numpy as np
 import datetime
 
 def preprocess_data(df):
-    # Drop irrelevant columns
     df.drop(['Unnamed: 0', 'New_Price'], axis=1, inplace=True)
 
-    # Extract manufacturer
+    # Extract Manufacturer
     manufacturer = df['Name'].str.split(' ').str.slice(0, 2)
     df['Manufacturer'] = manufacturer.str.join(' ')
 
-    # Calculate age
-    curr_year = datetime.datetime.now().year
-    df['Year Used'] = df['Year'].apply(lambda x: curr_year - x)
+    # Calculate car age
+    current_year = datetime.datetime.now().year
+    df['Year Used'] = df['Year'].apply(lambda x: current_year - x)
 
-    # Drop original columns
     df.drop(['Name', 'Year'], axis=1, inplace=True)
 
-    # Convert and fill Mileage
-    mileage = df['Mileage'].str.split(' ', expand=True)
-    df['Mileage'] = pd.to_numeric(mileage[0], errors='coerce')
-    df['Mileage'].fillna(df['Mileage'].mean(), inplace=True)
+    # Clean numeric columns
+    df['Mileage'] = pd.to_numeric(df['Mileage'].str.split(' ').str[0], errors='coerce')
+    df['Mileage'] = df['Mileage'].fillna(df['Mileage'].mean())
 
-    # Convert and fill Engine
-    engine = df['Engine'].str.split(' ', expand=True)
-    df['Engine'] = pd.to_numeric(engine[0], errors='coerce')
-    df['Engine'].fillna(df['Engine'].mean(), inplace=True)
+    df['Engine'] = pd.to_numeric(df['Engine'].str.split(' ').str[0], errors='coerce')
+    df['Engine'] = df['Engine'].fillna(df['Engine'].mean())
+    
+    df['Power'] = pd.to_numeric(df['Power'].str.split(' ').str[0], errors='coerce')
+    df['Power'] = df['Power'].fillna(df['Power'].mean())
 
-    # Convert and fill Power
-    power = df['Power'].str.split(' ', expand=True)
-    df['Power'] = pd.to_numeric(power[0], errors='coerce')
-    df['Power'].fillna(df['Power'].mean(), inplace=True)
+    df['Seats'] = df['Seats'].fillna(df['Seats'].mean())
 
-    # Fill missing seats
-    df['Seats'].fillna(df['Seats'].mean(), inplace=True)
-
-    # Remove rare manufacturers
+    # Filter rare manufacturers
     manufacturer_counts = df['Manufacturer'].value_counts()
     common_manufacturers = manufacturer_counts[manufacturer_counts >= 5].index
     df = df[df['Manufacturer'].isin(common_manufacturers)]
 
-    # One-hot encode categorical features
+    # One-hot encode categorical columns
     df = pd.get_dummies(df, columns=['Manufacturer', 'Fuel_Type', 'Transmission', 'Owner_Type', 'Location'], drop_first=True)
 
     return df
