@@ -34,5 +34,5 @@ def preprocess_data(df):
 
     # One-hot encode categorical columns
     df = pd.get_dummies(df, columns=['Manufacturer', 'Fuel_Type', 'Transmission', 'Owner_Type', 'Location'], drop_first=True)
-
+    df.to_csv("data/processed/processed_data.csv", index=False)
     return df
