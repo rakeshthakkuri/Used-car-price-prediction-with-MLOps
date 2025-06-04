@@ -32,7 +32,7 @@ if st.button("Predict Price"):
     else:
         with st.spinner("Contacting model..."):
             try:
-                response = requests.post("http://api:8000/predict", json=form_data)
+                response = requests.post("http://car-price-api-service:8000/predict", json=form_data)
                 if response.status_code == 200:
                     price = response.json().get("predicted_price", "N/A")
                     st.success(f"💰 Predicted Car Price: ₹{price} Lakhs")
