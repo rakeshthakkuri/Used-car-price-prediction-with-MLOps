@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   api:
@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./models:/app/models
 
   ui:
     build:
@@ -16,13 +16,13 @@ services:
       dockerfile: Dockerfile.ui
     ports:
       - "8501:8501"
-    volumes:
-      - .:/app
+    depends_on:
+      - api
 
   train:
     build:
       context: .
       dockerfile: Dockerfile.train
-    command: python3 src/train.py
+    command: ["python3", "src/train.py"]
     volumes:
-      - .:/app
+      - ./models:/app/models
