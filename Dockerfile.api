@@ -1,0 +1,17 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Copy root requirements file and install
+COPY requirements.txt .
+COPY setup.py . 
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy backend and src folders + models
+COPY api/ ./api/
+COPY src/ ./src/
+COPY models/ ./models/
+
+EXPOSE 8000
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

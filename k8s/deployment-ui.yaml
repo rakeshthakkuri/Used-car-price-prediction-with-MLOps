@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-price-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-price-ui
+  template:
+    metadata:
+      labels:
+        app: car-price-ui
+    spec:
+      containers:
+        - name: ui
+          image: rakeshthakkuri/car-price-ui:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8501

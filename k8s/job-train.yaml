@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: car-price-train
+spec:
+  template:
+    metadata:
+      labels:
+        app: car-price-train
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: train
+          image: car-price-train
+          imagePullPolicy: Never

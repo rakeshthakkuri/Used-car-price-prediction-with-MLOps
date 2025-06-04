@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui
+  template:
+    metadata:
+      labels:
+        app: ui
+    spec:
+      containers:
+      - name: ui
+        image: rakeshthakkuri/car-price-ui:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: API_URL
+          value: "http://api-service:8000"  # Cluster internal DNS

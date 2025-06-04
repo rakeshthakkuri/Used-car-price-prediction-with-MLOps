@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-price-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-price-api
+  template:
+    metadata:
+      labels:
+        app: car-price-api
+    spec:
+      containers:
+      - name: api
+        image: car-price-api
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
