@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: car-price-api
+        image: rakeshthakkuri/car-price-api:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8000
