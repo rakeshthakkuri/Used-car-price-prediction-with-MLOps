@@ -11,5 +11,5 @@ spec:
       restartPolicy: Never
       containers:
         - name: train
-          image: car-price-train
+          image: rakeshthakkuri/car-price-api:latest
           imagePullPolicy: Never
